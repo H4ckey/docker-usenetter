@@ -1,10 +1,10 @@
-directory = /root/downloads
+directory = /mnt/usenetpost/downloads
 
-schedule = watch_directory,1,1,"load_start=/root/watch/*.torrent,d.delete_tied="
+schedule = watch_directory,1,1,"load_start=/mnt/usenetpost/watch/*.torrent,d.delete_tied="
 
 encryption = allow_incoming,enable_retry,prefer_plaintext
 
-system.method.set_key = event.download.finished,usenetter,"execute=/root/usenetter.sh,$d.get_base_path="
+system.method.set_key = event.download.finished,usenetter,"execute=/mnt/usenetpost/usenetter.sh,$d.get_base_path="
 
 system.method.set_key = event.download.erased,remove_files,"execute={rm,-rf,--,$d.get_base_path=}"
 
