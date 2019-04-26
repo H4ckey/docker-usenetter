@@ -4,7 +4,7 @@ MAINTAINER papersackpuppet
 
 # Install packages
 RUN apt-get update && apt-get install -y cron rtorrent par2 rar python2.7 python-setuptools tmux
-python -m pip install pymongo
+#RUN python -m pip install pymongo
 RUN python /usr/lib/python2.7/dist-packages/easy_install.py feedparser
 
 # Add files
