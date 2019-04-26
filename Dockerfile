@@ -3,16 +3,16 @@ FROM ubuntu
 MAINTAINER papersackpuppet
 
 # Install packages
-RUN echo 'deb http://archive.ubuntu.com/ubuntu precise main universe multiverse' > /etc/apt/sources.list
 RUN apt-get update && apt-get install -y cron rtorrent par2 rar python2.7 python-setuptools tmux
-RUN easy_install feedparser
+python -m pip install pymongo
+RUN python /usr/lib/python2.7/dist-packages/easy_install.py feedparser
 
 # Add files
-ADD include /root
-ADD include/.rtorrent.rc /root/.rtorrent.rc
+ADD include /mnt/usenetpost
+ADD include/.rtorrent.rc /mnt/usenetpost/.rtorrent.rc
 
 # Set environment variables
-ENV HOME /root
+ENV HOME /mnt/usenetpost
 
 # RSS Feeds to watch, space delimited
 ENV RSS_FEEDS ENTERME
@@ -34,4 +34,4 @@ ENV USENET_POST_GROUP ENTERME
 ENV USENET_POST_AS ENTERME
 
 # Run stuff
-CMD ["/root/start.sh"]
+CMD ["/mnt/usenetpost/start.sh"]
