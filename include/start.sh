@@ -15,32 +15,32 @@ addCronJob()
 # Get each rss feed url
 for feed in $RSS_FEEDS
 do
-	addCronJob "*/$RSS_REFRESH_TIME * * * * flock /root/rss.lock -c '/root/fetchrss.py \"$feed\"'"
+	addCronJob "*/$RSS_REFRESH_TIME * * * * flock /mnt/usenetpost/rss.lock -c '/mnt/usenetpost/fetchrss.py \"$feed\"'"
 done
 
 # Cleanup jobs
-addCronJob "0 5 * * * /usr/bin/find /root/logs -mtime +14 -type f -delete"
-addCronJob "0 5 * * * /usr/bin/find /root/watch -mtime +2 -type f -delete"
-addCronJob "0 5 * * * /usr/bin/find /root/uploads -mtime +2 -type f -delete"
+addCronJob "0 5 * * * /usr/bin/find /mnt/usenetpost/logs -mtime +14 -type f -delete"
+addCronJob "0 5 * * * /usr/bin/find /mnt/usenetpost/watch -mtime +2 -type f -delete"
+addCronJob "0 5 * * * /usr/bin/find /mnt/usenetpost/uploads -mtime +2 -type f -delete"
 
 # Create directories 
-mkdir /root/logs
-mkdir /root/watch
-mkdir /root/downloads
-mkdir /root/uploads
+mkdir /mnt/usenetpost/logs
+mkdir /mnt/usenetpost/watch
+mkdir /mnt/usenetpost/downloads
+mkdir /mnt/usenetpost/uploads
 
 echo "Starting Cron..."
 cron -f &
 
 # Modify config variables
 echo "Configuring GoPostStuff..."
-sed -i "s/^From=ENTERME/From=$USENET_POST_AS/" /root/GoPostStuff.conf
-sed -i "s/^DefaultGroup=ENTERME/DefaultGroup=$USENET_POST_GROUP/" /root/GoPostStuff.conf
-sed -i "s/^Address=ENTERME/Address=$USENET_SERVER/" /root/GoPostStuff.conf
-sed -i "s/^Port=ENTERME/Port=$USENET_PORT/" /root/GoPostStuff.conf
-sed -i "s/^Username=ENTERME/Username=$USENET_USERNAME/" /root/GoPostStuff.conf
-sed -i "s/^Password=ENTERME/Password=$USENET_PASSWORD/" /root/GoPostStuff.conf
-sed -i "s/^TLS=ENTERME/TLS=$USENET_TLS/" /root/GoPostStuff.conf
+sed -i "s/^From=ENTERME/From=$USENET_POST_AS/" /mnt/usenetpost/GoPostStuff.conf
+sed -i "s/^DefaultGroup=ENTERME/DefaultGroup=$USENET_POST_GROUP/" /mnt/usenetpost/GoPostStuff.conf
+sed -i "s/^Address=ENTERME/Address=$USENET_SERVER/" /mnt/usenetpost/GoPostStuff.conf
+sed -i "s/^Port=ENTERME/Port=$USENET_PORT/" /mnt/usenetpost/GoPostStuff.conf
+sed -i "s/^Username=ENTERME/Username=$USENET_USERNAME/" /mnt/usenetpost/GoPostStuff.conf
+sed -i "s/^Password=ENTERME/Password=$USENET_PASSWORD/" /mnt/usenetpost/GoPostStuff.conf
+sed -i "s/^TLS=ENTERME/TLS=$USENET_TLS/" /mnt/usenetpost/GoPostStuff.conf
 
 # Start rtorrent
 echo "Starting rtorrent..."

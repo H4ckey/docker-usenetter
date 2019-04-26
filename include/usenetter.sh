@@ -1,8 +1,8 @@
 #!/bin/bash
 
-LOGDIR=/root/logs
-DLDIR=/root/downloads
-UPLOADS=/root/uploads
+LOGDIR=/mnt/usenetpost/logs
+DLDIR=/mnt/usenetpost/downloads
+UPLOADS=/mnt/usenetpost/uploads
 REALPATH=`readlink -m "$1"`
 RARSIZE=15m
 FILE=`python -c "print '$REALPATH'.split('/')[-1:][0]"`
@@ -61,7 +61,7 @@ log "Creating the pars"
 /usr/bin/par2create -r10 -n7 "$TEMPDIR/$FILE" "$TEMPDIR/*.rar" 2>&1 | logcmd
 
 #Upload the files
-/root/GoPostStuff -c /root/GoPostStuff.conf -d "$TEMPDIR" 2>&1 | logcmd
+/mnt/usenetpost/GoPostStuff -c /mnt/usenetpost/GoPostStuff.conf -d "$TEMPDIR" 2>&1 | logcmd
 
 #cleanup
 if [[ "$TEMPDIR" != "$UPLOADS" ]]

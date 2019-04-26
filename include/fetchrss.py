@@ -7,7 +7,7 @@ import sys
 import urllib
 
 PICKLE_FILE = "finished.pickle"
-WATCH_DIR = "/root/watch/"
+WATCH_DIR = "/mnt/usenetpost/watch/"
 RSSFEED = sys.argv[1]
 
 if __name__ == "__main__":
