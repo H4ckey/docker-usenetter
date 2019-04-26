@@ -8,7 +8,7 @@ Make sure you have a host with docker installed and configured. While the script
 
 Run the following:
 ```bash
-git clone https://github.com/papersackpuppet/docker-usenetter.git
+git clone https://github.com/H4ckey/docker-usenetter.git
 cd docker-usenetter
 ```
 
